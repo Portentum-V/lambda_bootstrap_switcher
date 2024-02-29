@@ -13,6 +13,15 @@ import time
 import traceback
 import warnings
 
+sys.path.insert(0, '/var/lang/lib/python3.7/site-packages/awslambdaric')
+sys.path.insert(0, '/var/lang/lib/python3.8/site-packages/awslambdaric')
+sys.path.insert(0, '/var/lang/lib/python3.9/site-packages/awslambdaric')
+sys.path.insert(0, '/var/lang/lib/python3.10/site-packages/awslambdaric')
+sys.path.insert(0, '/var/lang/lib/python3.11/site-packages/awslambdaric')
+sys.path.insert(0, '/var/lang/lib/python3.12/site-packages/awslambdaric')
+sys.path.insert(0, '/var/lang/lib/python3.13/site-packages/awslambdaric')
+sys.path.insert(0, '/var/lang/lib/python3.14/site-packages/awslambdaric')
+sys.path.insert(0, '/var/lang/lib/python3.15/site-packages/awslambdaric')
 
 from lambda_runtime_client import LambdaRuntimeClient, LambdaRuntimeClientError
 from lambda_runtime_exception import FaultException
