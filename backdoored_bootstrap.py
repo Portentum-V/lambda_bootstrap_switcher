@@ -11,10 +11,20 @@ import sys
 import time
 import traceback
 
-from .lambda_context import LambdaContext
-from .lambda_runtime_client import LambdaRuntimeClient
-from .lambda_runtime_exception import FaultException
-from .lambda_runtime_log_utils import (
+sys.path.insert(0, '/var/lang/lib/python3.7/site-packages/awslambdaric')
+sys.path.insert(0, '/var/lang/lib/python3.8/site-packages/awslambdaric')
+sys.path.insert(0, '/var/lang/lib/python3.9/site-packages/awslambdaric')
+sys.path.insert(0, '/var/lang/lib/python3.10/site-packages/awslambdaric')
+sys.path.insert(0, '/var/lang/lib/python3.11/site-packages/awslambdaric')
+sys.path.insert(0, '/var/lang/lib/python3.12/site-packages/awslambdaric')
+sys.path.insert(0, '/var/lang/lib/python3.13/site-packages/awslambdaric')
+sys.path.insert(0, '/var/lang/lib/python3.14/site-packages/awslambdaric')
+sys.path.insert(0, '/var/lang/lib/python3.15/site-packages/awslambdaric')
+
+from lambda_context import LambdaContext
+from lambda_runtime_client import LambdaRuntimeClient
+from lambda_runtime_exception import FaultException
+from lambda_runtime_log_utils import (
     _DATETIME_FORMAT,
     _DEFAULT_FRAME_TYPE,
     _JSON_FRAME_TYPES,
@@ -24,7 +34,7 @@ from .lambda_runtime_log_utils import (
     _format_log_level,
     _get_log_level_from_env_var,
 )
-from .lambda_runtime_marshaller import to_json
+from lambda_runtime_marshaller import to_json
 
 ERROR_LOG_LINE_TERMINATE = "\r"
 ERROR_LOG_IDENT = "\u00a0"  # NO-BREAK SPACE U+00A0
