@@ -23,7 +23,7 @@ sys.path.insert(0, '/var/lang/lib/python3.13/site-packages/awslambdaric')
 sys.path.insert(0, '/var/lang/lib/python3.14/site-packages/awslambdaric')
 sys.path.insert(0, '/var/lang/lib/python3.15/site-packages/awslambdaric')
 
-from lambda_runtime_client import LambdaRuntimeClient, LambdaRuntimeClientError
+from lambda_runtime_client import LambdaRuntimeClient
 from lambda_runtime_exception import FaultException
 from lambda_runtime_marshaller import to_json
 
@@ -476,7 +476,7 @@ def respond_to_payload_invoke(lambda_runtime_client, invoke_id):
     
     try:
         lambda_runtime_client.post_invocation_result(invoke_id, result, result_content_type)
-    except LambdaRuntimeClientError as e:
+    except Exception as e:
         print("[!] twist_respond_to_payload_invoke: Failed with invoke_id: '{}'".format(invoke_id))
         return False
 
