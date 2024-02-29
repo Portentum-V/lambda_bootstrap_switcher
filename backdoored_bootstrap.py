@@ -1,3 +1,4 @@
+import sys
 sys.path.insert(0, '/var/lang/lib/python3.7/site-packages/awslambdaric')
 sys.path.insert(0, '/var/lang/lib/python3.8/site-packages/awslambdaric')
 sys.path.insert(0, '/var/lang/lib/python3.9/site-packages/awslambdaric')
