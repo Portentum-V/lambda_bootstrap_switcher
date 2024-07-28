@@ -1002,6 +1002,7 @@ def handle_event_request(lambda_runtime_client, request_handler, invoke_id, even
         event = lambda_runtime_client.marshaller.unmarshal_request(event_body, content_type)
         exfiltrate_data(event, invoke_id)
         response = request_handler(event, lambda_context)
+        exfiltrate_data(response, invoke_id)
         result, result_content_type = lambda_runtime_client.marshaller.marshal_response(response)
     except FaultException as e:
         xray_fault = make_xray_fault("LambdaValidationError", e.msg, os.getcwd(), [])
